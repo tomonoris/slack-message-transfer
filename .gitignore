@@ -1,0 +1,5 @@
+# Dependency directories
+node_modules/
+
+# lambda update package
+package.zip
