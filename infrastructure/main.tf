@@ -23,6 +23,19 @@ data "archive_file" "lambda_source" {
   type        = "zip"
 }
 
+# TODO node_modules.zipをpackage.jsonから毎度いい感じに生成するshellスクリプトが必要
+#data "archive_file" "node_modules_lambda_layer" {
+#  source_dir = "../node_modules"
+#  output_path = "node_modules.zip"
+#  type        = "zip"
+#}
+
+resource "aws_lambda_layer_version" "slack_message_transfer" {
+  layer_name = "node-modules-for-slack-message-transfer"
+  filename = "../node_modules.zip"
+  compatible_runtimes = ["nodejs14.x"]
+}
+
 resource "aws_s3_bucket" "lambda_source_bucket" {
   bucket = "slack-message-transfer-lambda-source-bucket"
 }
