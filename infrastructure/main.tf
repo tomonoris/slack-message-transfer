@@ -18,8 +18,8 @@ provider "aws" {
 }
 
 data "archive_file" "lambda_source" {
-  source_dir = "${path.module}/src"
-  output_path = "${path.module}/source.zip"
+  source_dir = "../src"
+  output_path = "source.zip"
   type        = "zip"
 }
 
