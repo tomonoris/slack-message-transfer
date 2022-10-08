@@ -59,6 +59,8 @@ resource "aws_lambda_function" "slack_message_transfer" {
   s3_bucket = aws_s3_bucket.lambda_source_bucket.id
   s3_key = aws_s3_object.lambda_source.key
 
+  layers = [aws_lambda_layer_version.slack_message_transfer.arn]
+
   runtime = "nodejs14.x"
   handler = "index.handler"
 
