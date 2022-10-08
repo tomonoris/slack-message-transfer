@@ -1,41 +1,41 @@
 #今は使用しておらず、terraformでインフラ管理をしている
 
-#name: AWS Lambda Deploy
-#on:
+name: AWS Lambda Deploy
+on:
 #  push:
 #    branches:
 #      - main
-#  workflow_dispatch:
-#
-#jobs:
-#  deploy:
-#    runs-on: ubuntu-latest
-#    permissions:
-#      id-token: write
-#      contents: read
-#
-#    steps:
-#      - name: checkout
-#        uses: actions/checkout@v3
-#
-#      - name: configure-aws-credentials
-#        uses: aws-actions/configure-aws-credentials@master
-#        with:
-#          aws-region: ${{ secrets.AWS_REGION }}
-#          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-#          role-session-name: GitHubActions
-#
-#      - name: get-caller-identity
-#        run: aws sts get-caller-identity
-#
-#      - name: setup-node
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: '14.x'
-#          cache: 'npm'
-#
-#      - name: update-lambda-function
-#        run: |
-#          npm install aws-xray-sdk
-#          zip -r package.zip .
-#          aws lambda update-function-code --function-name slack-message-transfer --zip-file fileb://package.zip --publish
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: GitHubActions
+
+      - name: get-caller-identity
+        run: aws sts get-caller-identity
+
+      - name: setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14.x'
+          cache: 'npm'
+
+      - name: update-lambda-function
+        run: |
+          npm install aws-xray-sdk
+          zip -r package.zip .
+          aws lambda update-function-code --function-name slack-message-transfer --zip-file fileb://package.zip --publish
