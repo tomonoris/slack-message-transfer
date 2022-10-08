@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const { WebClient } = require('@slack/web-api');
 
 exports.handler = async (event, context) => {
-    console.log('Received event:', JSON.stringify(event));
+    console.log('Received event from Slack:', JSON.stringify(event));
 
     let body;
     let statusCode = '200';
@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
             });
         
             body = `Successfully send message ${result.ts} in conversation ${sendToChannelId}`;
-        };
+        }
     } catch (err) {
         statusCode = '400';
         body = err.message;
