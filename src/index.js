@@ -1,3 +1,6 @@
+// Note: 実行のためにはLambdaの環境変数に手動で"SLACK_TOKEN", "SLACK_SEND_TO_CHANNEL"を登録する必要がある
+// 上記はterraformでは現状管理していない
+
 const AWS = require('aws-sdk');
 const { WebClient } = require('@slack/web-api');
 
