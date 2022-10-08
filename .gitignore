@@ -3,3 +3,10 @@ node_modules/
 
 # lambda update package
 package.zip
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
