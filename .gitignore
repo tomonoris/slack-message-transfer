@@ -3,6 +3,7 @@ node_modules/
 
 # lambda update package
 package.zip
+source.zip
 
 # Local .terraform directories
 **/.terraform/*
