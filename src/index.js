@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
             const token = process.env.SLACK_TOKEN;
             const web = new WebClient(token);
         
-            const sendToChannelId = process.env.SLACK_SEND_TO_CHANNEL;
+            const sendToChannelId = process.env.SLACK_CHANNEL_TO_SEND;
             const message = received_data.event;
         
             const result = await web.chat.postMessage({

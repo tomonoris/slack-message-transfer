@@ -59,6 +59,13 @@ resource "aws_lambda_function" "slack_message_transfer" {
   s3_bucket = aws_s3_bucket.lambda_source_bucket.id
   s3_key = aws_s3_object.lambda_source.key
 
+  environment {
+    variables = {
+      SLACK_CHANNEL_TO_SEND = var.slack_channel_to_send
+      SLACK_TOKEN = var.slack_token
+    }
+  }
+
   layers = [aws_lambda_layer_version.slack_message_transfer.arn]
 
   runtime = "nodejs14.x"
@@ -131,7 +138,7 @@ resource "aws_apigatewayv2_integration" "slack_message_transfer" {
 
 resource "aws_apigatewayv2_route" "slack_message_transfer" {
   api_id    = aws_apigatewayv2_api.lambda.id
-  route_key = "$default"
+  route_key = "ANY /slack-message-transfer"
   target = "integrations/${aws_apigatewayv2_integration.slack_message_transfer.id}"
 }
 
