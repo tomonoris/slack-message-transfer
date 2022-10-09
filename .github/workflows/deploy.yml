@@ -1,4 +1,4 @@
-#今は使用しておらず、terraformでインフラ管理をしている
+# 今は使用しておらず、terraformでdeployまで含めたインフラ管理をしている
 
 name: AWS Lambda Deploy
 on:
