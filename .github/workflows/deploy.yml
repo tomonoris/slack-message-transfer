@@ -1,8 +1,10 @@
-name: AWS Lambda Deploy 
+# 今は使用しておらず、terraformでdeployまで含めたインフラ管理をしている
+
+name: AWS Lambda Deploy
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
   workflow_dispatch:
 
 jobs:

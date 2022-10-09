@@ -1,5 +1,17 @@
 # Dependency directories
 node_modules/
 
-# lambda update package
+# zip file for uploading to aws
 package.zip
+source.zip
+node_modules.zip
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# credential .tfvars files
+*.tfvars
