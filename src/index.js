@@ -1,7 +1,6 @@
-const AWS = require('aws-sdk');
 const { WebClient } = require('@slack/web-api');
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
     console.log('Received event from Slack:', JSON.stringify(event));
 
     let body;
@@ -12,9 +11,9 @@ exports.handler = async (event, context) => {
 
     try {
         const received_data = JSON.parse(event.body);
-        if(received_data.type == 'url_verification') {
+        if(received_data.type === 'url_verification') {
             // slackからのhealth checkのための応答
-            body = event.body.challenge;
+            body = received_data.challenge;
         } else {
             const token = process.env.SLACK_TOKEN;
             const web = new WebClient(token);
