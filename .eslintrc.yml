@@ -2,11 +2,12 @@ env:
   browser: true
   es2021: true
   node: true
-extends:
+extends: [
   standard-with-typescript,
   prettier
-overrides: []
+]
+overrides: [ ]
 parserOptions:
   ecmaVersion: latest
   sourceType: module
-rules: {}
+rules: { }
