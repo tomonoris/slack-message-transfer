@@ -40,12 +40,12 @@ resource "aws_s3_bucket" "lambda_source_bucket" {
   bucket = "slack-message-transfer-lambda-source-bucket"
 }
 
-resource "aws_s3_bucket_acl" "bucket_acl" {
+resource "aws_s3_bucket_acl" "lambda_source_bucket_acl" {
   bucket = aws_s3_bucket.lambda_source_bucket.id
   acl = "private"
 }
 
-resource "aws_s3_object" "lambda_source" {
+resource "aws_s3_object" "slack_message_transfer_lambda_source" {
   bucket = aws_s3_bucket.lambda_source_bucket.id
   key    = "source.zip"
   source = data.archive_file.lambda_source.output_path
@@ -57,7 +57,7 @@ resource "aws_lambda_function" "slack_message_transfer" {
   role          = aws_iam_role.lambda_exec.arn
 
   s3_bucket = aws_s3_bucket.lambda_source_bucket.id
-  s3_key = aws_s3_object.lambda_source.key
+  s3_key = aws_s3_object.slack_message_transfer_lambda_source.key
 
   environment {
     variables = {
