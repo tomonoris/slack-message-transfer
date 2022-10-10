@@ -10,16 +10,16 @@ exports.handler = async (event) => {
   };
 
   try {
-    const received_data = JSON.parse(event.body);
-    if (received_data.type === "url_verification") {
+    const ReceivedData = JSON.parse(event.body);
+    if (ReceivedData.type === "url_verification") {
       // slackからのhealth checkのための応答
-      body = received_data.challenge;
+      body = ReceivedData.challenge;
     } else {
       const token = process.env.SLACK_TOKEN;
       const web = new WebClient(token);
 
       const sendToChannelId = process.env.SLACK_CHANNEL_TO_SEND;
-      const message = received_data.event;
+      const message = ReceivedData.event;
 
       const result = await web.chat.postMessage({
         text: `channel: ${message.channel}, user: ${message.user}, message: ${message.text}`,
