@@ -11,8 +11,7 @@ exports.handler = async (event) => {
 
     try {
         const received_data = JSON.parse(event.body);
-        if(received_data.type === 'url_verification') {
-            // slackからのhealth checkのための応答
+        if (received_data.type === 'url_verification') {　// slackからのhealth checkのための応答
             body = received_data.challenge;
         } else {
             const token = process.env.SLACK_TOKEN;
@@ -25,8 +24,8 @@ exports.handler = async (event) => {
                 text: `channel: ${message.channel}, user: ${message.user}, message: ${message.text}`,
                 channel: sendToChannelId
             });
-        
-            body = `Successfully send message ${result.ts} in conversation ${sendToChannelId}`;
+
+            body = `Successfully send message of ${message.text} in ${result.ts}`;
         }
     } catch (err) {
         statusCode = '400';
